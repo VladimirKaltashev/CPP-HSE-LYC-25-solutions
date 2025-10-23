@@ -1,0 +1,50 @@
+## Дана последовательность из nn целых чисел. Определите, является ли она строго монотонной.
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long n;
+    cin >> n;
+
+    if (n <= 1) {
+        cout << "YES";
+        return 0;
+    }
+
+    long long prev, curr;
+    cin >> prev;
+
+    long long direction = 0;
+    bool valid = true;
+
+    for (long long i = 1; i < n; ++i) {
+        cin >> curr;
+
+        if (curr > prev) {
+            if (direction == -1) {
+                valid = false;
+            }
+            direction = 1;
+        } else if (curr < prev) {
+            if (direction == 1) {
+                valid = false;
+            }
+            direction = -1;
+        } else {
+            valid = false;
+        }
+        prev = curr;
+    }
+    if (direction == 0) {
+        valid = false;
+    }
+
+    if (valid) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+    return 0;
+}
