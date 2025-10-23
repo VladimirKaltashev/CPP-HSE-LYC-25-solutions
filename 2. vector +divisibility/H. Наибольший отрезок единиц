@@ -1,0 +1,22 @@
+## Дано натуральное число nn. Найдите максимальное количество подряд идущих 11 в двоичной записи этого числа.
+
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    long long n, res = 0, curr = 0;
+    cin >> n;
+    while (n > 0) {
+        if (n % 2 == 1) {
+            curr++;
+            res = max(res, curr);
+        } else {
+            curr = 0;
+        }
+        n = n / 2;
+    }
+    cout << res << endl;
+    return 0;
+}
