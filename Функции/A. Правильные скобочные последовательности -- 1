@@ -1,0 +1,38 @@
+## Напишите функцию, которая проверяет скобочную последовательность с одним типом скобок на правильность и возвращает значение типа bool в зависимости от результата проверки. Затем используйте эту функцию для решения задачи.
+
+#include <iostream>
+#include <string>
+#include <stack>
+
+using namespace std;
+
+bool isCorrect(const string& s) {
+    stack<char> st;
+    for (char c : s) {
+        if (c == '(') {
+            st.push(c);
+        } else if (c == ')') {
+            if (st.empty()) {
+                return false;
+            }
+            st.pop();
+        }
+    }
+    return st.empty();
+}
+
+int main() {
+    string line;
+    while (getline(cin, line)) {
+                if (!line.empty() && line.back() == '\r') {
+            line.pop_back();
+        }
+        if (isCorrect(line)) {
+            cout << "yes\n";
+        } else {
+            cout << "no\n";
+        }
+    }
+
+    return 0;
+}
